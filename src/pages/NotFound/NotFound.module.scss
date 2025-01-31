@@ -1,0 +1,28 @@
+$image: url('../../assets/images/notFound.jpg');
+
+.notFound {
+  height: 100vh;
+  width: 100%;
+
+  &_image {
+    background-image: $image;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    filter: blur(3px);
+    position: absolute;
+    opacity: 0.8;
+  }
+
+  &_content {
+    width: 100%;
+    display: -ms-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 10;
+    position: relative;
+  }
+}
