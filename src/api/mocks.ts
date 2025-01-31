@@ -6,5 +6,5 @@ export function mockSuccessAnswer<T>(payload: T): { body: T } {
 }
 
 export const mockPosts: IPost[] = [];
-export const mockUsers: IUser[] = [];
+export const mockUsers: IUser[] = [{ id: 1, email: 'test@mail.ru', firstName: 'Ann', lastName: 'Bystrova' }];
 export const mockTasks: ITask[] = [];
