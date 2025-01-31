@@ -91,6 +91,7 @@
     "react/no-unused-prop-types": 0,
     "react/react-in-jsx-scope": 0,
     "no-bitwise": 0,
+    "import/no-named-as-default": 0,
     // Сломанное правило
     "unicorn/expiring-todo-comments": 0
   }
