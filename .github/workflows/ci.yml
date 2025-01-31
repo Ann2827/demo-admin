@@ -57,13 +57,6 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      - name: Download app artifacts
-        continue-on-error: false
-        uses: actions/download-artifact@v4
-        with:
-          name: app
-          path: ./dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
