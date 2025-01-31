@@ -18,7 +18,7 @@ SettingsStore.initialize({
   modules: {
     https: {
       settings: {
-        mockMode: Boolean(import.meta.env.VITE_MOCK_MODE === 'true'),
+        mockMode: Boolean(import.meta.env.MODE === 'mock'),
         waitToken: false,
         loader: true,
         messages: true,

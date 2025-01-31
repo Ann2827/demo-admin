@@ -5,13 +5,8 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({ mode }) => ({
-  base: '/',
-  plugins: [
-    react(),
-    svgr(),
-    tsconfigPaths(),
-    basicSsl(),
-  ],
+  base: mode === 'production' ? '/demo-admin' : '/',
+  plugins: [react(), svgr(), tsconfigPaths(), basicSsl()],
   publicDir: 'public',
   preview: {
     strictPort: true,
@@ -19,8 +14,8 @@ export default defineConfig(({ mode }) => ({
   },
   css: {
     modules: {
-      localsConvention: "camelCase",
-      generateScopedName: loadEnv(mode, process.cwd(), '').NODE_ENV !== 'development' ? "[hash:base64:12]" : undefined,
-    }
+      localsConvention: 'camelCase',
+      generateScopedName: loadEnv(mode, process.cwd(), '').NODE_ENV !== 'development' ? '[hash:base64:12]' : undefined,
+    },
   },
 }));
