@@ -1,0 +1,16 @@
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { PageContainer } from '@/modules';
+
+const {{name}}: React.FC = () => {
+  const { t } = useTranslation();
+
+  return (
+    <PageContainer title='{{name}}'>
+      {{name}}
+    </PageContainer>
+  );
+};
+
+export default {{name}};

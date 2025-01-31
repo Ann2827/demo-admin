@@ -1,0 +1,9 @@
+$page_margin: 20px;
+
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: $page_margin 0;
+  min-height: calc(100vh - #{$page_margin} * 2);
+}

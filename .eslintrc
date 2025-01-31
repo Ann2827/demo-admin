@@ -1,0 +1,97 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "standard-react",
+    "eslint:recommended",
+    "plugin:unicorn/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "airbnb-typescript",
+    "prettier"
+  ],
+  "ignorePatterns": ["vite.config.ts"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["unicorn", "import", "@typescript-eslint", "react-hooks", "react-refresh", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "."
+      },
+      "alias": [
+        ["@/*", "./src/*"]
+      ]
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
+  },
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ],
+    "unicorn/no-null": 0,
+    "unicorn/prevent-abbreviations": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/no-array-reduce": 0,
+    "unicorn/no-array-for-each": 0,
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      {
+        "args": "none"
+      }
+    ],
+    "react/no-array-index-key": 0,
+    "react/jsx-filename-extension": [0],
+    "@typescript-eslint/no-explicit-any": 0,
+    "unicorn/prefer-node-protocol": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": [["builtin", "external"], ["internal", "parent"], ["sibling", "index"], "object", "type"],
+        "pathGroups": [
+          {
+            "pattern": "@",
+            "group": "parent",
+            "position": "before"
+          }
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "unicorn/no-for-loop": 0,
+    "jest/no-commented-out-tests": 0,
+    "import/no-named-as-default-member": 0,
+    "react/no-unused-prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    "no-bitwise": 0,
+    // Сломанное правило
+    "unicorn/expiring-todo-comments": 0
+  }
+}
