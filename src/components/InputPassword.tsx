@@ -33,6 +33,7 @@ const InputPassword: React.FC<InputProps & { label?: string; helperText?: string
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               onMouseUp={handleMouseUpPassword}
+              color='secondary'
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>

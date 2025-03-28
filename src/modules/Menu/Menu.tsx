@@ -54,6 +54,7 @@ const Menu: React.FC = () => {
                 {t('Dark theme')}
               </Typography>
             }
+            sx={{ marginRight: 0, marginLeft: '-6px' }}
           />
         ),
       },
