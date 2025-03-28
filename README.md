@@ -4,7 +4,7 @@ Demo admin @ react
 
 ## Links
 
-- Front site - <https://ann2827.github.io/demo-admin/index.html>
+- Front site - <https://ann2827.github.io/demo-admin/>
 - Example api enpoints - <https://http.hexlet.app/http-api-openapi#>
 
 ## System requirements
