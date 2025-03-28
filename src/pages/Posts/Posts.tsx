@@ -11,7 +11,7 @@ const Posts: React.FC = () => {
 
   return (
     <PageContainer title={t('Posts')}>
-      <List>
+      <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         {store?.posts?.map((item) => (
           <ListItem key={item.id} component={Paper} variant='outlined'>
             <ListItemText>{item.title}</ListItemText>

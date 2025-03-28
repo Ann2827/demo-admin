@@ -83,7 +83,7 @@ const MenuComponent: React.FC<MenuComponentProps> = ({
     <Stack>
       <Divider variant='middle' />
       <Accordion elevation={0}>
-        <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
+        <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon color='primary' />}>
           <Stack spacing={2} direction='row' alignItems='center'>
             <Avatar sx={(theme) => ({ bgcolor: theme.palette.secondary.main })}>
               {profile?.email[0].toUpperCase()}
@@ -101,13 +101,15 @@ const MenuComponent: React.FC<MenuComponentProps> = ({
               <ListItem disablePadding key={id}>
                 {IsItemAction(item) ? (
                   <ListItemButton onClick={item.action}>
-                    <ListItemIcon sx={{ minWidth: '40px' }}>
-                      <Icon component={item.icon} />
+                    <ListItemIcon sx={{ minWidth: '30px' }}>
+                      <Icon color='secondary' component={item.icon} />
                     </ListItemIcon>
-                    <ListItemText secondary={item.text} />
+                    <ListItemText secondary={item.text} slotProps={{ secondary: { variant: 'caption' } }} />
                   </ListItemButton>
                 ) : (
-                  item.node
+                  <Box py={0.5} px={2}>
+                    {item.node}
+                  </Box>
                 )}
               </ListItem>
             ))}
