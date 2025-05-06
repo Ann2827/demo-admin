@@ -66,7 +66,7 @@ const UserForm = React.forwardRef<UserFormRef, UserFormProps>(({ sx, user, withP
     <Grid container spacing={2} sx={sx}>
       <Grid size={{ xs: 12, sm: 6 }}>
         <TextField
-          label='Email'
+          label={t('field.email')}
           variant='standard'
           value={email}
           onChange={(event) => {
@@ -79,7 +79,7 @@ const UserForm = React.forwardRef<UserFormRef, UserFormProps>(({ sx, user, withP
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <TextField
-          label='First Name'
+          label={t('field.firstName')}
           variant='standard'
           value={firstName}
           onChange={(event) => {
@@ -92,7 +92,7 @@ const UserForm = React.forwardRef<UserFormRef, UserFormProps>(({ sx, user, withP
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <TextField
-          label='Last Name'
+          label={t('field.lastName')}
           variant='standard'
           value={lastName}
           onChange={(event) => {
@@ -106,7 +106,8 @@ const UserForm = React.forwardRef<UserFormRef, UserFormProps>(({ sx, user, withP
       {withPassword && (
         <Grid size={{ xs: 12, sm: 6 }}>
           <InputPassword
-            label='Password'
+            id='password'
+            label={t('field.password')}
             type='password'
             value={password}
             onChange={(event) => {

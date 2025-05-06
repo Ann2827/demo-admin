@@ -1,9 +1,9 @@
-import { useNeeds } from 'library-react-hooks';
 import * as React from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 
 import { ROUTE_DASHBOARD } from '@/constants/routes';
 import { LoaderComponent } from '@/components';
+import useNeeds from '@/hooks/needs.hook';
 
 const ExcludeAuth: React.FC = () => {
   const location = useLocation();

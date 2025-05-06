@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Button, Typography } from '@mui/material';
 import EastTwoToneIcon from '@mui/icons-material/EastTwoTone';
 import { useNavigate } from 'react-router-dom';
-import { NeedsActionTypes, NeedsStore } from 'library-react-hooks';
 
 import { ROUTE_MAIN } from '@/constants/routes';
 
@@ -16,16 +15,21 @@ const NotFound: React.FC = () => {
       <div className={styles.notFound_image} />
       <div className={styles.notFound_content}>
         <Typography
-          variant='h1'
           color='white'
-          sx={{ fontWeight: 700, textShadow: '4px 6px 7px #32323269', fontSize: '6rem' }}
+          sx={{ fontWeight: 700, textShadow: '4px 6px 7px #32323269', fontSize: '6rem', lineHeight: '100px' }}
         >
           404
         </Typography>
         <Typography
           variant='h1'
           color='white'
-          sx={{ textDecoration: 'underline', textShadow: '4px 6px 7px #32323269', fontSize: '6rem' }}
+          textAlign='center'
+          sx={{
+            textDecoration: 'underline',
+            textShadow: '4px 6px 7px #32323269',
+            fontSize: '6rem',
+            lineHeight: '100px',
+          }}
         >
           Not Found
         </Typography>
@@ -36,7 +40,6 @@ const NotFound: React.FC = () => {
           endIcon={<EastTwoToneIcon />}
           sx={{ zIndex: 10, mt: 10 }}
           onClick={() => {
-            NeedsStore.action('profile', NeedsActionTypes.refresh);
             navigate(ROUTE_MAIN);
           }}
         >

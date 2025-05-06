@@ -1,8 +1,8 @@
-import { CacheStore, HttpsStore, NeedsStore, ScenariosStore } from 'library-react-hooks';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ROUTE_DASHBOARD, ROUTE_MAIN } from '@/constants/routes';
+import requestManager from '@/api';
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -10,16 +10,13 @@ export const useAuth = () => {
   return {
     login: React.useCallback(
       async (props: { email: string; password: string }) => {
-        const { dataJson, validation, response } = await HttpsStore.namedRequest('postAuth', props);
-        ScenariosStore.after('postAuth');
-        if (validation?.(dataJson, response)) navigate(ROUTE_DASHBOARD);
+        const { validData } = await requestManager.namedRequest('postAuth', props);
+        if (validData) navigate(ROUTE_DASHBOARD);
       },
       [navigate],
     ),
     logout: React.useCallback(() => {
-      CacheStore.resetCache();
-      NeedsStore.restart();
-      HttpsStore.restart();
+      requestManager.restart();
       navigate(ROUTE_MAIN);
     }, [navigate]),
   };

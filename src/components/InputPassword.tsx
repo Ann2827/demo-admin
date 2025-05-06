@@ -8,6 +8,7 @@ const InputPassword: React.FC<InputProps & { label?: string; helperText?: string
   id,
   helperText,
   error,
+  sx,
   ...rest
 }) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -20,9 +21,14 @@ const InputPassword: React.FC<InputProps & { label?: string; helperText?: string
   };
 
   return (
-    <FormControl variant='standard'>
-      {label && id && <InputLabel htmlFor={id}>Password</InputLabel>}
+    <FormControl variant='standard' sx={{ width: '100%', ...sx }}>
+      {label && id && (
+        <InputLabel htmlFor={id} error={error}>
+          {label}
+        </InputLabel>
+      )}
       <Input
+        {...rest}
         id={id}
         type={showPassword ? 'text' : 'password'}
         error={error}
@@ -39,7 +45,6 @@ const InputPassword: React.FC<InputProps & { label?: string; helperText?: string
             </IconButton>
           </InputAdornment>
         }
-        {...rest}
       />
       {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
     </FormControl>

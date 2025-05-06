@@ -1,10 +1,15 @@
 {
   "field": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Email",
+    "password": "Пароль"
   },
   "action": {
-    "add?": "Добавить",
+    "add": "Добавить",
     "save?": "Сохранить",
-    "create?": "Создать"
+    "create?": "Создать",
+    "cancel": "Отмена"
   },
   "page": {
     "main": {
@@ -17,7 +22,7 @@
     "saved?": "Сохранено",
     "created?": "Создано",
     "maxLength?": "Максимальная длина {{length}} символов",
-    "requiredField?": "Обязатальное поле",
+    "requiredField": "Обязатальное поле",
     "numberField?": "В значение поля должна быть цифра"
   },
   "errors": {

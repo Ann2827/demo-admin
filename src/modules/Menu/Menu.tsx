@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Box, Drawer, FormControlLabel, IconButton, Switch, Typography, useColorScheme } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useNeeds } from 'library-react-hooks';
 import { useTranslation } from 'react-i18next';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
@@ -12,6 +11,7 @@ import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOu
 
 import { ROUTE_DASHBOARD, ROUTE_POSTS, ROUTE_TASKS, ROUTE_USERS } from '@/constants/routes';
 import { useAuth } from '../Auth';
+import useNeeds from '@/hooks/needs.hook';
 
 import { MenuComponent, MenuComponentConfigItem, MenuComponentProfileConfigItem } from './components';
 
