@@ -11,16 +11,12 @@ export const routes: RouteObject[] = [
     Component: Main,
   },
   {
+    path: ROUTE_LOGIN,
     Component: ExcludeAuth,
     children: [
       {
         index: true,
-        path: ROUTE_LOGIN,
         Component: Login,
-      },
-      {
-        path: '*',
-        Component: NotFound,
       },
     ],
   },

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
-import { useNeeds } from 'library-react-hooks';
 
 import { LoaderComponent } from '@/components';
 import { ROUTE_LOGIN } from '@/constants/routes';
+import useNeeds from '@/hooks/needs.hook';
 
 const RequireAuth: React.FC = () => {
   const location = useLocation();

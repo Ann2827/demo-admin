@@ -1,8 +1,9 @@
 import { IPost, ITask, IUser } from '@/types/validation';
-export function mockSuccessAnswer<T>(payload: T): { body: T } {
-  return {
-    body: payload,
-  };
+export function mockSuccessAnswer<T>(payload: T): Response {
+  return new Response(JSON.stringify(payload), {
+    status: 200,
+    statusText: 'OK',
+  });
 }
 
 export const mockPosts: IPost[] = [];

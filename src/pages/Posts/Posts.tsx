@@ -1,9 +1,9 @@
-import { useNeeds } from 'library-react-hooks';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { List, ListItem, ListItemText, Paper } from '@mui/material';
 
 import { PageContainer } from '@/modules';
+import useNeeds from '@/hooks/needs.hook';
 
 const Posts: React.FC = () => {
   const { t } = useTranslation();

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Paper, Stack, Typography } from '@mui/material';
-import { useNeeds } from 'library-react-hooks';
 
 import { PageContainer } from '@/modules';
+import useNeeds from '@/hooks/needs.hook';
 
 const Dashboard: React.FC = () => {
   const { store } = useNeeds(['posts', 'tasks']);

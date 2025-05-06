@@ -57,11 +57,11 @@
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
     "i18next": "^24.2.1",
-    "library-react-hooks": "^0.23.0-alpha.29",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",
     "react-router-dom": "^7.1.1",
+    "request-store-manager": "^1.0.3",
     "swiper": "^11.2.1"
   }
 }

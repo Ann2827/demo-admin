@@ -1,5 +1,4 @@
 import { Button, Paper, Stack } from '@mui/material';
-import { HttpsStore, ScenariosStore, useNeeds } from 'library-react-hooks';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
@@ -10,6 +9,8 @@ import { IUser } from '@/types/validation';
 import { ModalDialog, ModalDialogRef } from '@/components';
 
 import { ActionCell } from './components';
+import useNeeds from '@/hooks/needs.hook';
+import requestManager from '@/api';
 
 // TODO: добавить описание проблем с апи
 
@@ -21,16 +22,13 @@ const Users: React.FC = () => {
   const userFormRef = React.useRef<UserFormRef>(null);
 
   const onDelete = React.useCallback(async (id: number) => {
-    await HttpsStore.namedRequest('deleteUser', id);
-    ScenariosStore.after('deleteUser');
+    await requestManager.namedRequest('deleteUser', id);
   }, []);
   const onEdit = React.useCallback(async (id: number, user: Omit<IUser, 'id'>) => {
-    await HttpsStore.namedRequest('patchUser', id, user);
-    ScenariosStore.after('patchUser');
+    await requestManager.namedRequest('patchUser', id, user);
   }, []);
   const onAdd = React.useCallback(async (user: Omit<IUser, 'id'> & { password: string }) => {
-    await HttpsStore.namedRequest('postUser', user);
-    ScenariosStore.after('postUser');
+    await requestManager.namedRequest('postUser', user);
   }, []);
 
   const tableRows = React.useMemo<GridRowsProp>(() => store?.users || [], [store?.users]);
@@ -62,7 +60,7 @@ const Users: React.FC = () => {
             userModalAddRef.current?.handleOpen();
           }}
         >
-          {t('Add User')}
+          {t('action.add')}
         </Button>
         <ModalDialog
           ref={userModalAddRef}
@@ -76,9 +74,9 @@ const Users: React.FC = () => {
           }}
           buttons={{
             action: {
-              children: 'Add',
+              children: t('action.add'),
             },
-            reject: { children: 'Cancel' },
+            reject: { children: t('action.cancel') },
           }}
         >
           <UserForm ref={userFormRef} user={{ email: '', firstName: '', lastName: '' }} withPassword />
