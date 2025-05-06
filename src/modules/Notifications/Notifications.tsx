@@ -3,9 +3,10 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Alert, AlertTitle } from '@mui/material';
 
+import requestManager from '@/api';
+
 import { NotificationsProps } from './Notifications.types';
 import styles from './Notifications.module.scss';
-import requestManager from '@/api';
 
 // For test notification view
 // requestManager.sendNotification({ data: { title: 'My title', text: 'Descr' } });
@@ -22,11 +23,7 @@ const Notifications: React.FC<NotificationsProps> = ({ className }) => {
   return (
     <div className={notificationsClass}>
       {notifications.map((item) => (
-        <Alert
-          key={item.id}
-          severity={item.type}
-          onClose={item.drop}
-        >
+        <Alert key={item.id} severity={item.type} onClose={item.drop}>
           {item.data?.title && (
             <AlertTitle>{t(item.data?.title || '', { errorCode: item.response?.status || '' })}</AlertTitle>
           )}

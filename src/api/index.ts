@@ -13,7 +13,6 @@ function validationSuccessAnswer(dataJson: unknown, response: Response | undefin
   return !!response?.ok && IsObject(dataJson);
 }
 
-
 const requestManager = new RequestManager<TTokens, TStore, RM>({
   settings: {
     logger: !!import.meta.env.DEV,
@@ -190,7 +189,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
         onSuccess({ validData }, _, fetchData) {
           const id = fetchData.url.toString().split('/').reverse()[0];
           requestManager.set('users', (prev) =>
-            !!prev ? [...prev.filter((user) => user.id !== Number(id)), validData] : [validData],
+            prev ? [...prev.filter((user) => user.id !== Number(id)), validData] : [validData],
           );
           requestManager.sendNotification({
             data: { text: 'Данные пользователя успешно обновлены.' },
@@ -236,7 +235,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
       save: {
         storeKey: 'users',
         converter: ({ state, validData }) => {
-          return !!state ? [...state, validData] : [validData];
+          return state ? [...state, validData] : [validData];
         },
       },
     },

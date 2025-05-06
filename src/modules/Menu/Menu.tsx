@@ -11,9 +11,9 @@ import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOu
 
 import { ROUTE_DASHBOARD, ROUTE_POSTS, ROUTE_TASKS, ROUTE_USERS } from '@/constants/routes';
 import { useAuth } from '../Auth';
+import useNeeds from '@/hooks/needs.hook';
 
 import { MenuComponent, MenuComponentConfigItem, MenuComponentProfileConfigItem } from './components';
-import useNeeds from '@/hooks/needs.hook';
 
 const Menu: React.FC = () => {
   const { t } = useTranslation();

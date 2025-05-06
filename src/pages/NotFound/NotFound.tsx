@@ -24,7 +24,12 @@ const NotFound: React.FC = () => {
           variant='h1'
           color='white'
           textAlign='center'
-          sx={{ textDecoration: 'underline', textShadow: '4px 6px 7px #32323269', fontSize: '6rem', lineHeight: '100px' }}
+          sx={{
+            textDecoration: 'underline',
+            textShadow: '4px 6px 7px #32323269',
+            fontSize: '6rem',
+            lineHeight: '100px',
+          }}
         >
           Not Found
         </Typography>

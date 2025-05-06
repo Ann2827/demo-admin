@@ -11,8 +11,7 @@ export const useAuth = () => {
     login: React.useCallback(
       async (props: { email: string; password: string }) => {
         const { validData } = await requestManager.namedRequest('postAuth', props);
-        console.log('data', validData);
-        if (!!validData) navigate(ROUTE_DASHBOARD);
+        if (validData) navigate(ROUTE_DASHBOARD);
       },
       [navigate],
     ),
