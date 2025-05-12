@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Fab,
   Icon,
   Paper,
   Stack,
@@ -32,7 +33,8 @@ import Product1Img from '@/assets/images/product1.jpg';
 import Product2Img from '@/assets/images/product2.jpg';
 import { ROUTE_LOGIN } from '@/constants/routes';
 import { Footer, Header } from '@/modules';
-import { Carousel } from '@/components';
+import { Carousel, ScrollTop } from '@/components';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import theme from '@/theme';
 
 import { Background, TabPanel } from './components';
@@ -233,6 +235,11 @@ const Main: React.FC = () => {
             </Typography>
           </Stack>
         </Container>
+        <ScrollTop scrollId='root'>
+          <Fab size='small' aria-label='scroll back to top' color='primary'>
+            <KeyboardArrowUp />
+          </Fab>
+        </ScrollTop>
         <Footer />
       </Stack>
       <Background />
