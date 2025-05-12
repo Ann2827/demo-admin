@@ -40,49 +40,53 @@ import { Background, TabPanel } from './components';
 const features = [
   {
     icon: AccessTimeFilledRoundedIcon,
-    text: 'Как уже неоднократно упомянуто, сделанные на базе интернет-аналитики выводы объявлены нарушающими общечеловеческие нормы этики и морали.',
+    text: 'page.main.features.time',
   },
   {
     icon: CurrencyRubleRoundedIcon,
-    text: 'Предварительные выводы неутешительны: высокотехнологичная концепция общественного уклада в значительной степени обусловливает важность модели развития.',
+    text: 'page.main.features.costs',
   },
   {
     icon: LaptopChromebookRoundedIcon,
-    text: 'Наше дело не так однозначно, как может показаться: понимание сути ресурсосберегающих технологий предоставляет широкие возможности для существующих финансовых и административных условий.',
+    text: 'page.main.features.device',
   },
 ];
 
 const products = [
   {
     image: Product1Img,
-    title: 'Название',
-    text: 'И нет сомнений, что тщательные исследования конкурентов указаны как претенденты на роль ключевых факторов.',
+    title: 'page.main.products.1.title',
+    text: 'page.main.products.1.description',
   },
   {
     image: Product2Img,
-    title: 'Название',
-    text: 'Учитывая ключевые сценарии поведения, новая модель организационной деятельности способствует повышению качества анализа существующих паттернов поведения.',
+    title: 'page.main.products.2.title',
+    text: 'page.main.products.2.description',
   },
 ];
 
 const pricing = [
-  { name: 'Unlimited programs', essential: true, pro: true, enterprise: true },
-  { name: 'Custom domain', essential: false, pro: true, enterprise: true },
-  { name: 'Full white label', essential: false, pro: true, enterprise: true },
-  { name: 'Dedicated personal manager', essential: false, pro: '', enterprise: true },
+  { name: 'page.main.pricing.options.programs', personal: true, pro: true, enterprise: true },
+  { name: 'page.main.pricing.options.domain', personal: false, pro: true, enterprise: true },
+  { name: 'page.main.pricing.options.whiteLabel', personal: false, pro: true, enterprise: true },
+  { name: 'page.main.pricing.options.manager', personal: false, pro: false, enterprise: true },
 ];
 
 const menuConfig = {
-  products: { title: 'Products', id: 'products' },
-  pricing: { title: 'Pricing', id: 'pricing' },
+  products: { title: 'page.main.products.title', id: 'products' },
+  pricing: { title: 'page.main.pricing.title', id: 'pricing' },
 };
-const headerMenu = Object.entries(menuConfig).map(([, { title, id }]) => ({ title, href: '#' + id }));
 
 const HEADER_HEIGHT = '64px';
 
 const Main: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const headerMenu = React.useMemo(
+    () => Object.entries(menuConfig).map(([, { title, id }]) => ({ title: t(title), href: '#' + id })),
+    [t],
+  );
 
   const [activeTab, setActiveTab] = React.useState(0);
   const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
@@ -102,7 +106,7 @@ const Main: React.FC = () => {
               }}
               sx={{ flexGrow: 0 }}
             >
-              Login
+              {t('action.login')}
             </Button>
           }
         />
@@ -112,10 +116,9 @@ const Main: React.FC = () => {
               {t('{{name}}')}
             </Typography>
             <Typography color='textSecondary' mt={3} width={{ md: '70%' }} textAlign='center'>
-              Картельные сговоры не допускают ситуации, при которой тщательные исследования конкурентов неоднозначны и
-              будут объективно рассмотрены соответствующими инстанциями. В своём стремлении улучшить пользовательский
-              опыт мы упускаем, что предприниматели в сети интернет будут обнародованы.
+              {t('page.main.description')}
             </Typography>
+
             <Grid container spacing={3} mt={6} display={{ xs: 'none', md: 'inherit' }}>
               {features.map(({ icon, text }, id) => (
                 <Grid key={id} size={4}>
@@ -123,13 +126,14 @@ const Main: React.FC = () => {
                     <Stack direction='column' gap={3} alignItems='center' p={3}>
                       <Icon component={icon} sx={{ fontSize: '3rem' }} color='primary' />
                       <Typography color='textSecondary' textAlign='center'>
-                        {text}
+                        {t(text)}
                       </Typography>
                     </Stack>
                   </Paper>
                 </Grid>
               ))}
             </Grid>
+
             <Stack alignItems='center' mt={6} sx={{ display: { md: 'none' } }}>
               <Tabs value={activeTab} onChange={handleChangeTab}>
                 {features.map(({ icon }, id) => (
@@ -143,14 +147,15 @@ const Main: React.FC = () => {
               ))}
             </Stack>
           </Stack>
+
           <Stack flexDirection='column' m={{ md: 4, xs: 1 }} alignItems='center' id={menuConfig.products.id}>
             <Typography variant='h2' textAlign='center' mt={HEADER_HEIGHT}>
-              Products
+              {t('page.main.products.title')}
             </Typography>
             <Typography color='textSecondary' mt={3} width='70%' textAlign='center'>
-              Задача организации, в особенности же перспективное планирование однозначно фиксирует необходимость вывода
-              текущих активов.
+              {t('page.main.products.description')}
             </Typography>
+
             <Carousel sx={{ mt: 4, width: '100%' }}>
               {products.map(({ image, title, text }, id) => (
                 <Card
@@ -166,10 +171,10 @@ const Main: React.FC = () => {
                         variant='h5'
                         color={theme.palette.getContrastText(theme.palette.third.light)}
                       >
-                        {title}
+                        {t(title)}
                       </Typography>
                       <Typography variant='body2' color={theme.palette.getContrastText(theme.palette.third.light)}>
-                        {text}
+                        {t(text)}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -177,28 +182,30 @@ const Main: React.FC = () => {
               ))}
             </Carousel>
           </Stack>
+
           <Stack flexDirection='column' m={{ md: 4, xs: 1 }} alignItems='center' id={menuConfig.pricing.id}>
             <Typography variant='h2' textAlign='center' mt={HEADER_HEIGHT}>
-              Pricing
+              {t('page.main.pricing.title')}
             </Typography>
+
             <TableContainer sx={{ mt: 4, 'td, th': { borderColor: theme.palette.third.main, borderWidth: '0.1rem' } }}>
               <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                   <TableRow sx={{ th: { fontWeight: 800 } }}>
                     <TableCell align='right'></TableCell>
-                    <TableCell align='center'>Essential</TableCell>
-                    <TableCell align='center'>Pro</TableCell>
-                    <TableCell align='center'>Enterprise</TableCell>
+                    <TableCell align='center'>{t('page.main.pricing.programs.personal')}</TableCell>
+                    <TableCell align='center'>{t('page.main.pricing.programs.pro')}</TableCell>
+                    <TableCell align='center'>{t('page.main.pricing.programs.enterprise')}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {pricing.map(({ name, essential, pro, enterprise }, id) => (
+                  {pricing.map(({ name, personal, pro, enterprise }, id) => (
                     <TableRow key={id}>
                       <TableCell component='th' scope='row' align='right'>
-                        {name}
+                        {t(name)}
                       </TableCell>
                       <TableCell align='center'>
-                        <Icon component={essential ? CheckRoundedIcon : CloseRoundedIcon} />
+                        <Icon component={personal ? CheckRoundedIcon : CloseRoundedIcon} />
                       </TableCell>
                       <TableCell align='center'>
                         <Icon component={pro ? CheckRoundedIcon : CloseRoundedIcon} />
@@ -210,16 +217,19 @@ const Main: React.FC = () => {
                   ))}
                   <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0, fontWeight: 800 } }}>
                     <TableCell component='th' scope='row' align='right'></TableCell>
-                    <TableCell align='center'>500 руб./мес.</TableCell>
-                    <TableCell align='center'>2000 руб./мес.</TableCell>
-                    <TableCell align='center'>3000 руб./мес.</TableCell>
+                    <TableCell align='center'>
+                      {t('label.cost', { value: t('page.main.pricing.cost.personal') })}
+                    </TableCell>
+                    <TableCell align='center'>{t('label.cost', { value: t('page.main.pricing.cost.pro') })}</TableCell>
+                    <TableCell align='center'>
+                      {t('label.cost', { value: t('page.main.pricing.cost.enterprise') })}
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
             <Typography color='textSecondary' mt={3} alignSelf='flex-start' variant='body2'>
-              * Значимость этих проблем настолько очевидна, что синтетическое тестирование предполагает независимые
-              способы реализации инновационных методов управления процессами.
+              {t('page.main.pricing.hint')}
             </Typography>
           </Stack>
         </Container>

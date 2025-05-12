@@ -1,0 +1,29 @@
+{
+  "label": {
+    "cost": "{{value}} $/month",
+    "copyright": "© {{date}} {{name}}. All rights reserved."
+  },
+  "page": {
+    "main": {
+      "pricing": {
+        "title": "Pricing",
+        "options": {
+          "programs": "Unlimited programs",
+          "domain": "Custom domain",
+          "whiteLabel": "Full white label",
+          "manager": "Dedicated personal manager"
+        },
+        "programs": {
+          "personal": "Personal",
+          "pro": "Pro",
+          "enterprise": "Enterprise"
+        },
+        "cost": {
+          "personal": "5",
+          "pro": "20",
+          "enterprise": "30"
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import { Locales, LOCALE_DEFAULT, LOCALE_SUPPORTED } from '@/constants/locale';
 
 import ruTranslation from './ru.json';
+import enTranslation from './ru.json';
 
 i18n.use(initReactI18next).init({
   fallbackLng: LOCALE_DEFAULT,
@@ -15,7 +16,7 @@ i18n.use(initReactI18next).init({
       translation: ruTranslation,
     },
     [Locales.en]: {
-      translation: ruTranslation,
+      translation: enTranslation,
     },
   },
   debug: false,
