@@ -11,14 +11,14 @@ const Dashboard: React.FC = () => {
 
   const overviewConfig = React.useMemo(
     () => [
-      { title: t('Posts'), quantity: store?.posts?.length || 0 },
-      { title: t('Tasks'), quantity: store?.tasks?.length || 0 },
+      { title: t('page.posts.title'), quantity: store?.posts?.length || 0 },
+      { title: t('page.tasks.title'), quantity: store?.tasks?.length || 0 },
     ],
     [t, store],
   );
 
   return (
-    <PageContainer title={t('Dashboard')}>
+    <PageContainer title={t('page.dashboard.title')}>
       <Stack direction='row' gap={2}>
         {overviewConfig.map((item, id) => (
           <Paper key={id} variant='outlined'>

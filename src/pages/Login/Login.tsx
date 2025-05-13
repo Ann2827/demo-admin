@@ -53,12 +53,12 @@ const Login: React.FC = () => {
       <Header />
       <Container maxWidth='sm' sx={{ mt: '64px' }}>
         <Alert severity='info' sx={{ mt: 5 }}>
-          Any email and password
+          {t('message.login')}
         </Alert>
         <Paper sx={{ mt: 3 }}>
-          <Stack p={4} direction='column' gap={2}>
+          <Stack p={4} direction='column' gap={4}>
             <Typography variant='h2' textAlign='center'>
-              Auth
+              {t('page.login.title')}
             </Typography>
             <TextField
               label='Email'
@@ -67,7 +67,8 @@ const Login: React.FC = () => {
               onChange={(event) => changeEmail(event.target.value)}
             />
             <InputPassword
-              label='Password'
+              id='password'
+              label={t('field.password')}
               type='password'
               value={password}
               onChange={(event) => changePassword(event.target.value)}
@@ -78,10 +79,10 @@ const Login: React.FC = () => {
                   navigate(ROUTE_MAIN);
                 }}
               >
-                Back
+                {t('action.back')}
               </Button>
               <Button onClick={handleAuth} disabled={buttonDisabled} variant='contained'>
-                Send
+                {t('action.login')}
               </Button>
             </Stack>
           </Stack>

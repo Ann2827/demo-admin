@@ -43,7 +43,7 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
     () => [
       {
         icon: EditOutlinedIcon,
-        text: 'Edit',
+        text: t('action.edit'),
         action: () => {
           userModalEditRef.current?.handleOpen();
           handlePopoverClose();
@@ -51,7 +51,7 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
       },
       {
         icon: DeleteOutlineOutlinedIcon,
-        text: 'Delete',
+        text: t('action.delete'),
         color: 'error',
         action: () => {
           userModalDeleteRef.current?.handleOpen();
@@ -97,7 +97,7 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
       </Popover>
       <ModalDialog
         ref={userModalEditRef}
-        title='Edit User'
+        title={t('page.users.userEdit')}
         onAction={() => {
           const validate = userFormRef.current?.onValidate();
           if (!validate?.valid) return;
@@ -107,9 +107,9 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
         }}
         buttons={{
           action: {
-            children: 'Update',
+            children: t('action.update'),
           },
-          reject: { children: 'Cancel' },
+          reject: { children: t('action.cancel') },
         }}
       >
         <UserForm
@@ -119,7 +119,7 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
       </ModalDialog>
       <ModalDialog
         ref={userModalDeleteRef}
-        title='Delete User'
+        title={t('page.users.userDelete')}
         onAction={() => {
           params.onDelete(params.row.id);
           userModalDeleteRef.current?.handleClose();
@@ -127,14 +127,14 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
         buttons={{
           action: {
             color: 'error',
-            children: 'Delete',
+            children: t('action.delete'),
           },
-          reject: { children: 'Cancel' },
+          reject: { children: t('action.cancel') },
         }}
       >
         <Stack direction='column' alignItems='center' gap={1}>
           <Icon component={DeleteOutlineOutlinedIcon} fontSize='huge' color='error' />
-          <DialogContentText color='primaryText'>Вы действительно хотите удалить пользователя?</DialogContentText>
+          <DialogContentText color='primaryText'>{t('page.users.userDeleteDescription')}</DialogContentText>
           <DialogContentText>email: {params.row.email}</DialogContentText>
         </Stack>
       </ModalDialog>

@@ -1,4 +1,21 @@
 {
+  "field": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "darkTheme": "Dark Theme"
+  },
+  "action": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "login": "Login",
+    "back": "Back",
+    "exit": "Exit",
+    "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
   "label": {
     "cost": "{{value}} $/month",
     "copyright": "© {{date}} {{name}}. All rights reserved."
@@ -24,6 +41,36 @@
           "enterprise": "30"
         }
       }
+    },
+    "login": {
+      "title": "Auth"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "posts": {
+      "title": "Posts"
+    },
+    "tasks": {
+      "title": "Tasks"
+    },
+    "users": {
+      "title": "Users",
+      "userAdd": "Add user",
+      "userEdit": "Edit user",
+      "userDelete": "Delete user",
+      "userDeleteDescription": "Do you really want to delete the user?"
     }
+  },
+  "message": {
+    "requiredField": "Required field",
+    "login": "Any email and password",
+    "userRemoved": "The user has been successfully deleted",
+    "userUpdated": "User's data has been successfully updated",
+    "userAdded": "The user has been successfully added"
+  },
+  "errors": {
+    "errorTitle": "Error {{errorCode}}",
+    "error403": "Not enough rights"
   }
 }

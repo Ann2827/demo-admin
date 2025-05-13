@@ -150,7 +150,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
           const id = fetchData.url.toString().split('/').reverse()[0];
           requestManager.set('users', (prev) => prev?.filter((user) => user.id !== Number(id)) || []);
           requestManager.sendNotification({
-            data: { text: 'Пользователь успешно удален' },
+            data: { text: 'message.userRemoved' },
             type: 'success',
             sticky: false,
           });
@@ -192,7 +192,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
             prev ? [...prev.filter((user) => user.id !== Number(id)), validData] : [validData],
           );
           requestManager.sendNotification({
-            data: { text: 'Данные пользователя успешно обновлены.' },
+            data: { text: 'message.userUpdated' },
             type: 'success',
             sticky: false,
           });
@@ -226,7 +226,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
           validationSuccessAnswer(dataJson, response) && IsUser(dataJson),
         onSuccess() {
           requestManager.sendNotification({
-            data: { text: 'Пользователь успешно добавлен' },
+            data: { text: 'message.userAdded' },
             type: 'success',
             sticky: false,
           });

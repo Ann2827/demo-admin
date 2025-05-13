@@ -51,7 +51,7 @@ const Users: React.FC = () => {
   );
 
   return (
-    <PageContainer title={t('Users')}>
+    <PageContainer title={t('page.users.title')}>
       <Stack direction='row' mb={2} justifyContent='flex-end'>
         <Button
           variant='contained'
@@ -64,7 +64,7 @@ const Users: React.FC = () => {
         </Button>
         <ModalDialog
           ref={userModalAddRef}
-          title='Add User'
+          title={t('page.users.userAdd')}
           onAction={() => {
             const validate = userFormRef.current?.onValidate();
             if (!validate?.valid) return;
@@ -91,6 +91,7 @@ const Users: React.FC = () => {
           rowSelection={false}
           columnVisibilityModel={{ id: false }}
           sx={{ border: 0, py: 1.5 }}
+          // localeText={{ MuiTablePagination: { rowsPerPage: 'Rows per page:' } }}
         />
       </Paper>
     </PageContainer>

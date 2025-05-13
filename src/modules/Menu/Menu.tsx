@@ -27,10 +27,15 @@ const Menu: React.FC = () => {
 
   const menuConfig = React.useMemo<MenuComponentConfigItem[]>(
     () => [
-      { route: ROUTE_DASHBOARD, text: t('Dashboard'), icon: GridViewOutlinedIcon },
-      { route: ROUTE_USERS, text: t('Users'), icon: PeopleAltOutlinedIcon },
-      { route: ROUTE_POSTS, text: t('Posts'), icon: DnsOutlinedIcon, bage: store?.posts?.length },
-      { route: ROUTE_TASKS, text: t('Tasks'), icon: PlaylistAddCheckOutlinedIcon, bage: store?.tasks?.length },
+      { route: ROUTE_DASHBOARD, text: t('page.dashboard.title'), icon: GridViewOutlinedIcon },
+      { route: ROUTE_USERS, text: t('page.users.title'), icon: PeopleAltOutlinedIcon },
+      { route: ROUTE_POSTS, text: t('page.posts.title'), icon: DnsOutlinedIcon, bage: store?.posts?.length },
+      {
+        route: ROUTE_TASKS,
+        text: t('page.tasks.title'),
+        icon: PlaylistAddCheckOutlinedIcon,
+        bage: store?.tasks?.length,
+      },
     ],
     [store, t],
   );
@@ -51,14 +56,14 @@ const Menu: React.FC = () => {
             }
             label={
               <Typography color='secondary' variant='caption'>
-                {t('Dark theme')}
+                {t('field.darkTheme')}
               </Typography>
             }
             sx={{ marginRight: 0, marginLeft: '-6px' }}
           />
         ),
       },
-      { text: t('Exit'), icon: LogoutOutlinedIcon, action: logout },
+      { text: t('action.exit'), icon: LogoutOutlinedIcon, action: logout },
     ],
     [logout, mode, setMode, t],
   );
