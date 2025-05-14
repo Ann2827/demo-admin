@@ -10,7 +10,7 @@ const Tasks: React.FC = () => {
   const { store } = useNeeds(['tasks']);
 
   return (
-    <PageContainer title={t('Tasks')}>
+    <PageContainer title={t('page.tasks.title')}>
       <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         {store?.tasks?.map((item) => (
           <ListItem key={item.id} component={Paper} variant='outlined'>

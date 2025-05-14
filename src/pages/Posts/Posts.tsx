@@ -10,7 +10,7 @@ const Posts: React.FC = () => {
   const { store } = useNeeds(['posts']);
 
   return (
-    <PageContainer title={t('Posts')}>
+    <PageContainer title={t('page.posts.title')}>
       <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         {store?.posts?.map((item) => (
           <ListItem key={item.id} component={Paper} variant='outlined'>

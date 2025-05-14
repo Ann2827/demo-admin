@@ -8,10 +8,8 @@ const Footer: React.FC<FooterProps> = ({ sx }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   return (
-    <Stack width='100%' p={2} direction='row' justifyContent='center' bgcolor={theme.palette.secondary.lighter} sx={sx}>
-      <Typography>
-        © {new Date().getFullYear()} {t('{{name}}')}. All rights reserved.
-      </Typography>
+    <Stack width='100%' p={2} direction='row' justifyContent='center' bgcolor={theme.palette.third.lighter} sx={sx}>
+      <Typography color='textSecondary'>{t('label.copyright', { date: new Date().getFullYear() })}</Typography>
     </Stack>
   );
 };

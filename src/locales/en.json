@@ -1,0 +1,97 @@
+{
+  "field": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "darkTheme": "Dark Theme",
+    "language": "Language"
+  },
+  "action": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "login": "Login",
+    "back": "Back",
+    "exit": "Exit",
+    "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete",
+    "settings": "Settings"
+  },
+  "label": {
+    "cost": "{{value}} $/month",
+    "copyright": "© {{date}} {{name}}. All rights reserved."
+  },
+  "page": {
+    "main": {
+      "description": "Cartel agreements do not allow for a situation in which thorough research of competitors is ambiguous and will be objectively reviewed by the relevant authorities. In our quest to improve the user experience, we are missing out on making online entrepreneurs public.",
+      "features": {
+        "time": "As has been repeatedly mentioned, the conclusions drawn on the basis of Internet analytics are declared to violate universal norms of ethics and morality.",
+        "costs": "The preliminary conclusions are disappointing: the high-tech concept of the social structure largely determines the importance of the development model.",
+        "device": "Our case is not as straightforward as it might seem: understanding the essence of resource-saving technologies provides ample opportunities for existing financial and administrative conditions."
+      },
+      "products": {
+        "title": "Products",
+        "description": "The task of the organization, especially long-term planning, clearly fixes the need to withdraw current assets.",
+        "1": {
+          "title": "Product 1",
+          "description": "And there is no doubt that thorough research of competitors is indicated as contenders for the role of key factors."
+        },
+        "2": {
+          "title": "Product 2",
+          "description": "Taking into account key behavioral scenarios, the new model of organizational activity helps to improve the quality of analysis of existing patterns of behavior."
+        }
+      },
+      "pricing": {
+        "title": "Pricing",
+        "options": {
+          "programs": "Unlimited programs",
+          "domain": "Custom domain",
+          "whiteLabel": "Full white label",
+          "manager": "Dedicated personal manager"
+        },
+        "programs": {
+          "personal": "Personal",
+          "pro": "Pro",
+          "enterprise": "Enterprise"
+        },
+        "cost": {
+          "personal": "5",
+          "pro": "20",
+          "enterprise": "30"
+        },
+        "hint": "* The significance of these issues is so obvious that synthetic testing suggests independent ways to implement innovative process management methods."
+      }
+    },
+    "login": {
+      "title": "Auth"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "posts": {
+      "title": "Posts"
+    },
+    "tasks": {
+      "title": "Tasks"
+    },
+    "users": {
+      "title": "Users",
+      "userAdd": "Add user",
+      "userEdit": "Edit user",
+      "userDelete": "Delete user",
+      "userDeleteDescription": "Do you really want to delete the user?"
+    }
+  },
+  "message": {
+    "requiredField": "Required field",
+    "login": "Any email and password",
+    "userRemoved": "The user has been successfully deleted",
+    "userUpdated": "User's data has been successfully updated",
+    "userAdded": "The user has been successfully added"
+  },
+  "errors": {
+    "errorTitle": "Error {{errorCode}}",
+    "error403": "Not enough rights"
+  }
+}

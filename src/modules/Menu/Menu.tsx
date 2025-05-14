@@ -1,109 +1,105 @@
 import * as React from 'react';
-import { Box, Drawer, FormControlLabel, IconButton, Switch, Typography, useColorScheme } from '@mui/material';
+import { Divider, Stack, StackProps, styled } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 import { ROUTE_DASHBOARD, ROUTE_POSTS, ROUTE_TASKS, ROUTE_USERS } from '@/constants/routes';
 import { useAuth } from '../Auth';
 import useNeeds from '@/hooks/needs.hook';
+import { Logo } from '@/components';
 
-import { MenuComponent, MenuComponentConfigItem, MenuComponentProfileConfigItem } from './components';
+import { MenuDialog, MenuDrawer, MenuList, MenuListProps, MenuProfileConfig, MunuProfile } from './components';
+import { MenuAccordion } from './components/MenuAccordion';
+
+const MenuWrapper = styled(Stack)<StackProps>(({ theme }) =>
+  theme.unstable_sx({
+    component: 'nav',
+    direction: 'column',
+    height: '100%',
+    maxHeight: '100vh',
+    width: '360px',
+    justifyContent: 'space-between',
+    overflowY: 'hidden',
+    borderRight: `1px solid ${theme.palette.divider}`,
+  }),
+);
+
+const config: MenuListProps['config'] = [
+  { route: ROUTE_DASHBOARD, text: 'page.dashboard.title', icon: GridViewOutlinedIcon },
+  { route: ROUTE_USERS, text: 'page.users.title', icon: PeopleAltOutlinedIcon },
+  { route: ROUTE_POSTS, text: 'page.posts.title', icon: DnsOutlinedIcon },
+  { route: ROUTE_TASKS, text: 'page.tasks.title', icon: PlaylistAddCheckOutlinedIcon },
+];
 
 const Menu: React.FC = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { store } = useNeeds(['profile', 'posts', 'tasks']);
   const { logout } = useAuth();
-  const { mode, setMode } = useColorScheme();
 
-  const [open, setOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const handleDialogOpen = React.useCallback(() => {
+    setDialogOpen(true);
+  }, []);
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
-  const menuConfig = React.useMemo<MenuComponentConfigItem[]>(
+  const profileConfig = React.useMemo<MenuProfileConfig[]>(
     () => [
-      { route: ROUTE_DASHBOARD, text: t('Dashboard'), icon: GridViewOutlinedIcon },
-      { route: ROUTE_USERS, text: t('Users'), icon: PeopleAltOutlinedIcon },
-      { route: ROUTE_POSTS, text: t('Posts'), icon: DnsOutlinedIcon, bage: store?.posts?.length },
-      { route: ROUTE_TASKS, text: t('Tasks'), icon: PlaylistAddCheckOutlinedIcon, bage: store?.tasks?.length },
+      { text: 'action.settings', icon: SettingsRoundedIcon, action: handleDialogOpen },
+      { text: 'action.exit', icon: LogoutOutlinedIcon, action: logout },
     ],
-    [store, t],
-  );
-
-  const profileConfig = React.useMemo<MenuComponentProfileConfigItem[]>(
-    () => [
-      {
-        node: (
-          <FormControlLabel
-            control={
-              <Switch
-                size='small'
-                checked={mode === 'dark'}
-                onChange={(_, checked) => {
-                  setMode(checked ? 'dark' : 'light');
-                }}
-              />
-            }
-            label={
-              <Typography color='secondary' variant='caption'>
-                {t('Dark theme')}
-              </Typography>
-            }
-            sx={{ marginRight: 0, marginLeft: '-6px' }}
-          />
-        ),
-      },
-      { text: t('Exit'), icon: LogoutOutlinedIcon, action: logout },
-    ],
-    [logout, mode, setMode, t],
+    [logout, handleDialogOpen],
   );
 
   return (
     <React.Fragment>
-      <MenuComponent
-        config={menuConfig}
-        onItemAction={({ route }) => {
-          navigate(route);
-        }}
-        activeRoute={pathname}
-        profile={store?.profile || null}
-        profileConfig={profileConfig}
-        sx={{ display: { md: 'flex', xs: 'none' } }}
-      />
-      <Box sx={{ display: { md: 'none', xs: 'flex' }, height: 'fit-content' }}>
-        <IconButton
-          onClick={() => {
-            setOpen(true);
-          }}
-          sx={{ p: 2 }}
-        >
-          <MenuOutlinedIcon />
-        </IconButton>
-        <Drawer
-          open={open}
-          onClose={() => {
-            setOpen(false);
-          }}
-        >
-          <MenuComponent
-            config={menuConfig}
+      <MenuWrapper sx={{ display: { md: 'flex', xs: 'none' } }}>
+        <Stack>
+          <Stack py={1} px={2} alignItems='center' justifyContent='center' direction='row'>
+            <Logo />
+          </Stack>
+          <Divider variant='middle' />
+          <MenuList
+            config={config}
+            bages={[0, 0, store?.posts?.length, store?.tasks?.length]}
             onItemAction={({ route }) => {
               navigate(route);
             }}
             activeRoute={pathname}
-            profile={store?.profile || null}
-            profileConfig={profileConfig}
-            onClose={() => {
-              setOpen(false);
-            }}
           />
-        </Drawer>
-      </Box>
+        </Stack>
+        <Stack>
+          <Divider variant='middle' />
+          <MenuAccordion email={store.profile?.email}>
+            <MunuProfile config={profileConfig} />
+          </MenuAccordion>
+        </Stack>
+      </MenuWrapper>
+
+      <MenuDrawer sx={{ display: { md: 'none', xs: 'flex' }, height: 'fit-content' }}>
+        <MenuWrapper>
+          <MenuList
+            config={config}
+            onItemAction={({ route }) => {
+              navigate(route);
+            }}
+            activeRoute={pathname}
+          />
+          <Stack>
+            <Divider variant='middle' />
+            <MunuProfile config={profileConfig} />
+          </Stack>
+        </MenuWrapper>
+      </MenuDrawer>
+
+      <MenuDialog open={dialogOpen} onClose={handleDialogClose} />
     </React.Fragment>
   );
 };
