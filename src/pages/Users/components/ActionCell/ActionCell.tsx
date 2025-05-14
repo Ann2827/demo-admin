@@ -59,7 +59,7 @@ const ActionCell: React.FC<ActionCellProps> = (params) => {
         },
       },
     ],
-    [],
+    [t],
   );
 
   return (

@@ -11,7 +11,7 @@ const ScrollTop: React.FC<React.PropsWithChildren<{ scrollId: string }>> = ({ ch
     anchor?.addEventListener('scroll', callback);
 
     return () => anchor?.removeEventListener('scroll', callback);
-  }, []);
+  }, [scrollId]);
 
   const handleClick = () => {
     document.getElementById(scrollId)?.scrollTo({

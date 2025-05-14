@@ -4,7 +4,8 @@
     "lastName": "Фамилия",
     "email": "Email",
     "password": "Пароль",
-    "darkTheme": "Темная тема"
+    "darkTheme": "Темная тема",
+    "language": "Язык"
   },
   "action": {
     "add": "Добавить",
@@ -14,7 +15,8 @@
     "exit": "Выйти",
     "update": "Обновить",
     "edit": "Редактировать",
-    "delete": "Удалить"
+    "delete": "Удалить",
+    "settings": "Настройки"
   },
   "label": {
     "cost": "{{value}} руб./мес.",

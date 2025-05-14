@@ -4,7 +4,8 @@
     "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
-    "darkTheme": "Dark Theme"
+    "darkTheme": "Dark Theme",
+    "language": "Language"
   },
   "action": {
     "add": "Add",
@@ -14,7 +15,8 @@
     "exit": "Exit",
     "update": "Update",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "settings": "Settings"
   },
   "label": {
     "cost": "{{value}} $/month",
@@ -22,6 +24,24 @@
   },
   "page": {
     "main": {
+      "description": "Cartel agreements do not allow for a situation in which thorough research of competitors is ambiguous and will be objectively reviewed by the relevant authorities. In our quest to improve the user experience, we are missing out on making online entrepreneurs public.",
+      "features": {
+        "time": "As has been repeatedly mentioned, the conclusions drawn on the basis of Internet analytics are declared to violate universal norms of ethics and morality.",
+        "costs": "The preliminary conclusions are disappointing: the high-tech concept of the social structure largely determines the importance of the development model.",
+        "device": "Our case is not as straightforward as it might seem: understanding the essence of resource-saving technologies provides ample opportunities for existing financial and administrative conditions."
+      },
+      "products": {
+        "title": "Products",
+        "description": "The task of the organization, especially long-term planning, clearly fixes the need to withdraw current assets.",
+        "1": {
+          "title": "Product 1",
+          "description": "And there is no doubt that thorough research of competitors is indicated as contenders for the role of key factors."
+        },
+        "2": {
+          "title": "Product 2",
+          "description": "Taking into account key behavioral scenarios, the new model of organizational activity helps to improve the quality of analysis of existing patterns of behavior."
+        }
+      },
       "pricing": {
         "title": "Pricing",
         "options": {
@@ -39,7 +59,8 @@
           "personal": "5",
           "pro": "20",
           "enterprise": "30"
-        }
+        },
+        "hint": "* The significance of these issues is so obvious that synthetic testing suggests independent ways to implement innovative process management methods."
       }
     },
     "login": {

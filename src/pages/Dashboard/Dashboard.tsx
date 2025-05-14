@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <PageContainer title={t('page.dashboard.title')}>
-      <Stack direction='row' gap={2}>
+      <Stack direction='row' gap={2} flexWrap='wrap'>
         {overviewConfig.map((item, id) => (
           <Paper key={id} variant='outlined'>
             <Stack direction='column' gap={2} p={2} minWidth='200px'>

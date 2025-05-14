@@ -4,6 +4,7 @@ import { Container, Divider, Stack, Typography, useMediaQuery } from '@mui/mater
 import { Menu } from '../Menu';
 
 import { PageContainerProps } from './PageContainer.types';
+import Language from '../Language';
 
 const PageContainer: React.FC<React.PropsWithChildren<PageContainerProps>> = ({ sx, children, title }) => {
   const isTablet = useMediaQuery((theme) => theme.breakpoints.down('md'));

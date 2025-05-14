@@ -28,13 +28,13 @@ import LaptopChromebookRoundedIcon from '@mui/icons-material/LaptopChromebookRou
 import Grid from '@mui/material/Grid2';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 
 import Product1Img from '@/assets/images/product1.jpg';
 import Product2Img from '@/assets/images/product2.jpg';
 import { ROUTE_LOGIN } from '@/constants/routes';
-import { Footer, Header } from '@/modules';
+import { Footer, Header, Language } from '@/modules';
 import { Carousel, ScrollTop } from '@/components';
-import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import theme from '@/theme';
 
 import { Background, TabPanel } from './components';
@@ -101,15 +101,18 @@ const Main: React.FC = () => {
         <Header
           menu={headerMenu}
           endContent={
-            <Button
-              color='inherit'
-              onClick={() => {
-                navigate(ROUTE_LOGIN);
-              }}
-              sx={{ flexGrow: 0 }}
-            >
-              {t('action.login')}
-            </Button>
+            <Stack direction='row' gap={2} alignItems='center'>
+              <Language />
+              <Button
+                color='inherit'
+                onClick={() => {
+                  navigate(ROUTE_LOGIN);
+                }}
+                sx={{ flexGrow: 0 }}
+              >
+                {t('action.login')}
+              </Button>
+            </Stack>
           }
         />
         <Container component='main' sx={{ mt: HEADER_HEIGHT }}>

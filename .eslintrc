@@ -36,6 +36,8 @@
     }
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
     "react-refresh/only-export-components": [
       "warn",
       {
@@ -92,6 +94,7 @@
     "react/react-in-jsx-scope": 0,
     "no-bitwise": 0,
     "import/no-named-as-default": 0,
+    "unicorn/prefer-query-selector": 0,
     // Сломанное правило
     "unicorn/expiring-todo-comments": 0
   }
