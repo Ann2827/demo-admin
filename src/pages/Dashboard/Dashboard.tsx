@@ -31,6 +31,9 @@ const Dashboard: React.FC = () => {
           </Paper>
         ))}
       </Stack>
+      <Typography color='secondary' variant='caption' mt={4}>
+        {t('page.dashboard.description')}
+      </Typography>
     </PageContainer>
   );
 };

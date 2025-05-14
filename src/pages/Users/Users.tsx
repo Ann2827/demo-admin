@@ -1,4 +1,4 @@
-import { Button, Paper, Stack } from '@mui/material';
+import { Button, Paper, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
@@ -52,7 +52,10 @@ const Users: React.FC = () => {
 
   return (
     <PageContainer title={t('page.users.title')}>
-      <Stack direction='row' mb={2} justifyContent='flex-end'>
+      <Typography color='secondary' variant='caption' maxWidth='70%'>
+        {t('page.users.description')}
+      </Typography>
+      <Stack direction='row' mb={2} justifyContent='flex-end' mt={2}>
         <Button
           variant='contained'
           startIcon={<AddOutlinedIcon />}
