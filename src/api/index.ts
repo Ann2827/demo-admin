@@ -142,10 +142,7 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
       }),
       parse: {
         isSuccess: (dataJson, response): dataJson is { users: IUser[]; total: number } =>
-          validationSuccessAnswer(dataJson, response) &&
-          IsObject<'users' | 'total'>(dataJson, ['users', 'total']) &&
-          IsArray<IUser>(dataJson.users, IsUser) &&
-          IsNumber(dataJson.total),
+          validationSuccessAnswer(dataJson, response),
         onSuccess(_props, _response, fetchData) {
           const id = fetchData.url.toString().split('/').reverse()[0];
           requestManager.set('users', (prev) => prev?.filter((user) => user.id !== Number(id)) || []);
@@ -155,12 +152,6 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
             sticky: false,
           });
         },
-      },
-      save: {
-        storeKey: 'users',
-        // converter: ({ state }) => {
-        //   return state?.filter((user) => user.id !== Number(id)) || [];
-        // },
       },
     },
     patchUser: {
