@@ -2,11 +2,11 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import { Locales, LOCALE_DEFAULT, LOCALE_SUPPORTED } from '@/constants/locale';
+import { IsString } from '@/types/guards';
+import { CacheManager } from '@/modules';
 
 import ruTranslation from './ru.json';
 import enTranslation from './en.json';
-import { IsString } from '@/types/guards';
-import { CacheManager } from '@/modules';
 
 export function IsLocale(payload?: unknown): payload is Locales {
   return !!payload && IsString(payload) && LOCALE_SUPPORTED.includes(payload as Locales);

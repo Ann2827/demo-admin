@@ -10,8 +10,6 @@ import {
   ListItemText,
   styled,
   SvgIconTypeMap,
-  SxProps,
-  Theme,
   Typography,
 } from '@mui/material';
 import * as React from 'react';

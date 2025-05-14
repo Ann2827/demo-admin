@@ -1,18 +1,17 @@
-import Language from '@/modules/Language';
 import {
   Dialog,
   DialogContent,
   DialogTitle,
-  FormControlLabel,
   List,
   ListItem,
   ListItemText,
   Switch,
-  Typography,
   useColorScheme,
 } from '@mui/material';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Language from '@/modules/Language';
 
 export const MenuDialog: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
   const { t } = useTranslation();

@@ -1,8 +1,9 @@
 import { Box, Divider, Drawer, Icon, IconButton, Stack, SxProps, Theme } from '@mui/material';
 import * as React from 'react';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import { Logo } from '@/components';
 import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
+
+import { Logo } from '@/components';
 
 export const MenuDrawer: React.FC<React.PropsWithChildren<{ sx?: SxProps<Theme> }>> = ({ children, sx }) => {
   const [open, setOpen] = React.useState(false);

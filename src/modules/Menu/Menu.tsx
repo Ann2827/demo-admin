@@ -1,12 +1,6 @@
 import * as React from 'react';
-import {
-  Divider,
-  Stack,
-  StackProps,
-  styled,
-} from '@mui/material';
+import { Divider, Stack, StackProps, styled } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -17,10 +11,10 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { ROUTE_DASHBOARD, ROUTE_POSTS, ROUTE_TASKS, ROUTE_USERS } from '@/constants/routes';
 import { useAuth } from '../Auth';
 import useNeeds from '@/hooks/needs.hook';
+import { Logo } from '@/components';
 
 import { MenuDialog, MenuDrawer, MenuList, MenuListProps, MenuProfileConfig, MunuProfile } from './components';
 import { MenuAccordion } from './components/MenuAccordion';
-import { Logo } from '@/components';
 
 const MenuWrapper = styled(Stack)<StackProps>(({ theme }) =>
   theme.unstable_sx({
