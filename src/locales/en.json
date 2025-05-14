@@ -67,7 +67,8 @@
       "title": "Auth"
     },
     "dashboard": {
-      "title": "Dashboard"
+      "title": "Dashboard",
+      "description": "* Unfortunately, the third-party test API returns a set of words as data."
     },
     "posts": {
       "title": "Posts"
@@ -77,6 +78,7 @@
     },
     "users": {
       "title": "Users",
+      "description": "Unfortunately, the third-party test API returns a set of words instead of the email format. When adding a user, the API returns a new user, but not with the data that was filled in. When a user changes, the API returns a new list of users.",
       "userAdd": "Add user",
       "userEdit": "Edit user",
       "userDelete": "Delete user",
