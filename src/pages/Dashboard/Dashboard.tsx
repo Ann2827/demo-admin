@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
   const overviewConfig = React.useMemo(
     () => [
       { title: t('page.posts.title'), quantity: store?.posts?.length || 0 },
-      { title: t('page.tasks.title'), quantity: store?.tasks?.length || 0 },
+      { title: t('page.tasks.title'), quantity: store?.tasks?.ready.length || 0 },
     ],
     [t, store],
   );

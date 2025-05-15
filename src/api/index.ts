@@ -4,7 +4,7 @@ import { IsArray, IsNumber, IsObject, IsPost, IsProfile, IsString, IsTask, IsUse
 import { IPost, IProfile, ITask, IUser } from '@/types/validation';
 
 import { DELETE_USER, GET_POSTS, GET_TASKS, GET_USERS, PATCH_USER, POST_AUTH, POST_USER } from './urls';
-import { RM, TAnswer, TStore, TTokens } from './types';
+import { RM, TAnswer, TStore, TStoreTaskKeys, TTokens } from './types';
 import { mockPosts, mockSuccessAnswer, mockTasks, mockUsers } from './mocks';
 
 export * from './types';
@@ -12,6 +12,14 @@ export * from './types';
 function validationSuccessAnswer(dataJson: unknown, response: Response | undefined): dataJson is TAnswer<unknown> {
   return !!response?.ok && IsObject(dataJson);
 }
+
+const TASK_KEY_BY_STATUS: Record<ITask['status'], TStoreTaskKeys> = {
+  Archived: 'archived',
+  Backlog: 'backlog',
+  Done: 'done',
+  'In Progress': 'inProgress',
+  Ready: 'ready',
+};
 
 const requestManager = new RequestManager<TTokens, TStore, RM>({
   settings: {
@@ -54,9 +62,15 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
     },
     tasks: {
       default: null,
-      validation: (data): data is TStore[RM['getTasks']['storeKey']] => IsArray<ITask>(data, IsTask),
+      validation: (data): data is TStore['tasks'] =>
+        IsObject<TStoreTaskKeys>(data, ['backlog', 'ready', 'inProgress', 'done', 'archived']) &&
+        IsArray<ITask>(data.backlog, IsTask) &&
+        IsArray<ITask>(data.ready, IsTask) &&
+        IsArray<ITask>(data.inProgress, IsTask) &&
+        IsArray<ITask>(data.done, IsTask) &&
+        IsArray<ITask>(data.archived, IsTask),
       cache: { maxAge: 0, place: 'sessionStorage' },
-      isEmpty: (value) => !value || value.length === 0,
+      isEmpty: (value) => !value,
       autoRequest: 'getTasks',
     },
   },
@@ -247,7 +261,11 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
       save: {
         storeKey: 'tasks',
         converter: ({ validData }) => {
-          return validData.tasks;
+          const tasks: TStore['tasks'] = { backlog: [], ready: [], inProgress: [], done: [], archived: [] };
+          validData.tasks.forEach((task) => {
+            tasks[TASK_KEY_BY_STATUS[task.status]].push(task);
+          });
+          return tasks;
         },
       },
     },

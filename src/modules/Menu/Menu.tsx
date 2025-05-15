@@ -68,7 +68,7 @@ const Menu: React.FC = () => {
           <Divider variant='middle' />
           <MenuList
             config={config}
-            bages={[0, 0, store?.posts?.length, store?.tasks?.length]}
+            bages={[0, 0, store?.posts?.length, store?.tasks?.ready.length]}
             onItemAction={({ route }) => {
               navigate(route);
             }}
