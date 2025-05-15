@@ -7,11 +7,12 @@ export type TAnswer<T> = { data: T; success: boolean };
 
 export type TTokens = 'main';
 
+export type TStoreTaskKeys = 'backlog' | 'ready' | 'inProgress' | 'done' | 'archived';
 export type TStore = {
   profile: IProfile | null;
   posts: IPost[] | null;
   users: IUser[] | null;
-  tasks: ITask[] | null;
+  tasks: Record<TStoreTaskKeys, ITask[]> | null;
 };
 
 export interface RM extends RequestManagerBase<TTokens, TStore> {
