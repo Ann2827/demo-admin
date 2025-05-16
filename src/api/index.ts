@@ -3,7 +3,18 @@ import { RequestManager } from 'request-store-manager';
 import { IsArray, IsNumber, IsObject, IsPost, IsProfile, IsString, IsTask, IsUser } from '@/types/guards';
 import { IPost, IProfile, ITask, IUser } from '@/types/validation';
 
-import { DELETE_USER, GET_POSTS, GET_TASKS, GET_USERS, PATCH_USER, POST_AUTH, POST_USER } from './urls';
+import {
+  DELETE_TASK,
+  DELETE_USER,
+  GET_POSTS,
+  GET_TASKS,
+  GET_USERS,
+  PATCH_TASK,
+  PATCH_USER,
+  POST_AUTH,
+  POST_TASK,
+  POST_USER,
+} from './urls';
 import { RM, TAnswer, TStore, TStoreTaskKeys, TTokens } from './types';
 import { mockPosts, mockSuccessAnswer, mockTasks, mockUsers } from './mocks';
 
@@ -20,6 +31,9 @@ const TASK_KEY_BY_STATUS: Record<ITask['status'], TStoreTaskKeys> = {
   'In Progress': 'inProgress',
   Ready: 'ready',
 };
+
+const defaultTasks: TStore['tasks'] = { backlog: [], ready: [], inProgress: [], done: [], archived: [] };
+const deleteTask = (tasks: ITask[], id: string): ITask[] => tasks.filter((task) => task.id !== Number(id));
 
 const requestManager = new RequestManager<TTokens, TStore, RM>({
   settings: {
@@ -203,9 +217,6 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
           });
         },
       },
-      save: {
-        storeKey: 'users',
-      },
     },
     postUser: {
       request: (user) => ({
@@ -255,17 +266,117 @@ const requestManager = new RequestManager<TTokens, TStore, RM>({
         isSuccess: (dataJson, response): dataJson is { tasks: ITask[]; total: number } =>
           validationSuccessAnswer(dataJson, response) &&
           IsObject<'tasks' | 'total'>(dataJson, ['tasks', 'total']) &&
-          IsArray<IUser>(dataJson.tasks, IsTask) &&
+          IsArray<ITask>(dataJson.tasks, IsTask) &&
           IsNumber(dataJson.total),
       },
       save: {
         storeKey: 'tasks',
-        converter: ({ validData }) => {
-          const tasks: TStore['tasks'] = { backlog: [], ready: [], inProgress: [], done: [], archived: [] };
+        converter: ({ validData, state }) => {
+          const tasks: TStore['tasks'] = state ?? { ...defaultTasks };
           validData.tasks.forEach((task) => {
             tasks[TASK_KEY_BY_STATUS[task.status]].push(task);
           });
           return tasks;
+        },
+      },
+    },
+    postTask: {
+      request: (task) => ({
+        url: POST_TASK,
+        method: 'POST',
+        tokenName: 'main',
+        body: task,
+      }),
+      mock(_input, init) {
+        if (typeof init?.body !== 'string') return new Response();
+
+        const id = Math.floor(Math.random() * 1000);
+        let body = {};
+        try {
+          body = JSON.parse(init.body);
+        } catch {
+          return new Response();
+        }
+        return new Response(JSON.stringify({ ...body, id }));
+      },
+      parse: {
+        isSuccess: (dataJson, response): dataJson is ITask =>
+          validationSuccessAnswer(dataJson, response) && IsObject(dataJson) && IsTask(dataJson),
+      },
+      save: {
+        storeKey: 'tasks',
+        converter: ({ validData, state }) => {
+          const tasks: TStore['tasks'] = state ?? { ...defaultTasks };
+          const fixedData: ITask = { ...validData, status: 'Backlog' };
+          const taskKey = TASK_KEY_BY_STATUS[fixedData.status];
+          return { ...tasks, [taskKey]: [...tasks[taskKey], fixedData] };
+        },
+      },
+    },
+    patchTask: {
+      request: (id, task) => ({
+        url: PATCH_TASK + id,
+        method: 'PATCH',
+        body: task,
+        tokenName: 'main',
+      }),
+      mock(input, init) {
+        if (typeof init?.body !== 'string') return new Response();
+
+        const id = input.toString().split('/').reverse()[0];
+        let body = {};
+        try {
+          body = JSON.parse(init.body);
+        } catch {
+          return new Response();
+        }
+
+        return new Response(JSON.stringify({ id, ...body }));
+      },
+      parse: {
+        isSuccess: (dataJson, response): dataJson is ITask =>
+          validationSuccessAnswer(dataJson, response) && IsTask(dataJson),
+        onSuccess(_, __, fetchData) {
+          const id = fetchData.url.toString().split('/').reverse()[0];
+          const task: ITask = fetchData.body;
+          task.id = Number(id);
+          const taskKey = TASK_KEY_BY_STATUS[task.status];
+          requestManager.set('tasks', (prev) => {
+            if (!prev) return { ...defaultTasks };
+            const tasks = {
+              backlog: deleteTask(prev.backlog, id),
+              ready: deleteTask(prev.ready, id),
+              inProgress: deleteTask(prev.inProgress, id),
+              done: deleteTask(prev.done, id),
+              archived: deleteTask(prev.archived, id),
+            };
+            tasks[taskKey] = [...tasks[taskKey], task];
+            return tasks;
+          });
+        },
+      },
+    },
+    deleteTask: {
+      request: (id) => ({
+        url: DELETE_TASK + id,
+        method: 'DELETE',
+        tokenName: 'main',
+      }),
+      parse: {
+        isSuccess: (dataJson, response): dataJson is { users: IUser[]; total: number } =>
+          validationSuccessAnswer(dataJson, response),
+        onSuccess(_props, _response, fetchData) {
+          const id = fetchData.url.toString().split('/').reverse()[0];
+          requestManager.set('tasks', (prev) => {
+            if (!prev) return { ...defaultTasks };
+            return {
+              backlog: deleteTask(prev.backlog, id),
+              ready: deleteTask(prev.ready, id),
+              inProgress: deleteTask(prev.inProgress, id),
+              done: deleteTask(prev.done, id),
+              archived: deleteTask(prev.archived, id),
+            };
+          });
         },
       },
     },

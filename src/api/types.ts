@@ -55,4 +55,22 @@ export interface RM extends RequestManagerBase<TTokens, TStore> {
     storeKey: 'tasks';
     error: TError;
   };
+  postTask: {
+    fn: (task: Omit<ITask, 'id'>) => IHttpsRequest<TTokens>;
+    success: ITask;
+    storeKey: 'tasks';
+    error: TError;
+  };
+  patchTask: {
+    fn: (id: number, task: Omit<ITask, 'id'>) => IHttpsRequest<TTokens>;
+    success: ITask;
+    storeKey: 'tasks';
+    error: TError;
+  };
+  deleteTask: {
+    fn: (id: number) => IHttpsRequest<TTokens>;
+    success: object;
+    storeKey: 'tasks';
+    error: TError;
+  };
 }

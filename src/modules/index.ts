@@ -5,6 +5,7 @@ export * from './Header';
 export * from './Footer';
 export * from './PageContainer';
 export * from './UserForm';
+export * from './TaskForm';
 
 export { default as Loader } from './Loader';
 export { default as CacheManager } from './CacheManager';

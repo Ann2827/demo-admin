@@ -46,7 +46,7 @@ const lightPalette = createPalette({
     main: '#5A5C78',
     dark: '#43455F',
     light: '#C3C4E4',
-    lighter: '#E0E0FF',
+    lighter: '#dcddf3',
     darker: '#171A31',
   },
   third: {

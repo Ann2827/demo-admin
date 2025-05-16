@@ -5,7 +5,10 @@
     "email": "Email",
     "password": "Password",
     "darkTheme": "Dark Theme",
-    "language": "Language"
+    "language": "Language",
+    "title": "Title",
+    "description": "Description",
+    "status": "Status"
   },
   "action": {
     "add": "Add",
@@ -16,7 +19,8 @@
     "update": "Update",
     "edit": "Edit",
     "delete": "Delete",
-    "settings": "Settings"
+    "settings": "Settings",
+    "save": "Save"
   },
   "label": {
     "cost": "{{value}} $/month",
@@ -74,7 +78,11 @@
       "title": "Posts"
     },
     "tasks": {
-      "title": "Tasks"
+      "title": "Tasks",
+      "taskAdd": "Add task",
+      "description": "When adding a task, the API returns a new task, but not with the data that was filled in.",
+      "empty": "No Tasks",
+      "taskEdit": "Edit task"
     },
     "users": {
       "title": "Users",
