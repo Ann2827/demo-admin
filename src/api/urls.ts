@@ -14,3 +14,6 @@ export const GET_POSTS = `${API_URL}/posts`;
 
 // Tasks
 export const GET_TASKS = `${API_URL}/tasks`;
+export const POST_TASK = `${API_URL}/tasks`;
+export const PATCH_TASK = `${API_URL}/tasks/`;
+export const DELETE_TASK = `${API_URL}/tasks/`;

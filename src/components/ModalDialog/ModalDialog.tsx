@@ -37,7 +37,14 @@ const ModalDialog = React.forwardRef<ModalDialogRef, React.PropsWithChildren<Mod
         <Divider />
         <DialogContent sx={{ py: 3, px: 2 }}>{children}</DialogContent>
         <Divider />
-        <DialogActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', p: 2 }}>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: buttons.reject ? 'space-between' : 'flex-end',
+            p: 2,
+          }}
+        >
           {buttons.reject && (
             <Button
               color='secondary'
